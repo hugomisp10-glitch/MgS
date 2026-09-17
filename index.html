@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Margem Sul de Lisboa — Setúbal · Roteiro de 1 Dia</title>
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Margem Sul">
+<meta name="theme-color" content="#0a2f3f">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --night:#0a2f3f; --night-2:#123c4f;
+    --cream:#fffaf1; --cream-2:#f3e9d2;
+    --gold:#e8a15a; --gold-2:#f4c088;
+    --wine:#c4482e; --wine-2:#9c3722;
+    --pine:#2f8f6e;
+    --ink:#1a2b1f; --ink-soft:#48594d;
+    --text-light:#eef6f6; --text-muted:#c3d7da;
+    --radius:16px;
+    --shadow:0 12px 32px rgba(4,20,30,.30);
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;scroll-behavior:smooth;}
+  body{
+    background:
+      radial-gradient(1200px 600px at 10% -10%, #12495e 0%, transparent 60%),
+      radial-gradient(1000px 500px at 100% 0%, #123c4f 0%, transparent 55%),
+      var(--night);
+    color:var(--text-light);
+    font-family:'Public Sans', system-ui, sans-serif;
+    -webkit-font-smoothing:antialiased;
+    padding-bottom:70px;
+    font-size:15.5px;
+    line-height:1.6;
+  }
+  h1,h2,h3,.serif{font-family:'Fraunces', Georgia, serif;}
+  a{color:var(--gold-2);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  :focus-visible{outline:2px solid var(--gold-2);outline-offset:2px;}
+  img{display:block;max-width:100%;}
+  button{font-family:inherit;cursor:pointer;}
+
+  .hero{
+    position:relative; min-height:240px;
+    display:flex;flex-direction:column;justify-content:flex-end;
+    padding:26px 20px 28px; overflow:hidden;
+    background:
+      linear-gradient(180deg, rgba(10,47,63,.10) 0%, rgba(10,30,40,.55) 55%, var(--night) 100%),
+      radial-gradient(120% 140% at 15% 0%, #d97b45 0%, #c4482e 32%, #0e5a6d 62%, #0a2f3f 100%);
+  }
+  .hero .eyebrow{font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-2);font-weight:700;margin-bottom:10px;text-shadow:0 2px 8px rgba(0,0,0,.5);}
+  .hero h1{font-size:clamp(26px,7vw,38px);font-weight:700;line-height:1.1;margin:0 0 10px;color:#fff;text-shadow:0 4px 18px rgba(0,0,0,.55);}
+  .hero h1 em{font-style:italic;color:var(--gold-2);}
+  .hero p.sub{max-width:520px;margin:0 0 16px;color:#fdf3ea;font-size:14.5px;line-height:1.55;text-shadow:0 2px 10px rgba(0,0,0,.5);}
+  .hero .badge{display:inline-flex;align-items:center;gap:8px;background:rgba(10,47,63,.55);backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.18);border-radius:999px;padding:8px 16px;font-size:13px;color:var(--text-light);}
+  .garland{height:6px;width:100%;background:repeating-linear-gradient(90deg,var(--gold-2) 0 8px, transparent 8px 20px);opacity:.55;}
+
+  .overview{max-width:760px;margin:0 auto;padding:16px 16px 6px;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+  .ov-card{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:12px 8px;text-align:center;}
+  .ov-card .n{font-family:'Fraunces',serif;font-size:19px;color:var(--gold-2);font-weight:600;}
+  .ov-card .l{font-size:10px;color:var(--text-muted);text-transform:uppercase;letter-spacing:.05em;margin-top:2px;}
+
+  .tabbar-wrap{position:sticky;top:0;z-index:50;background:linear-gradient(180deg,var(--night) 78%, rgba(10,47,63,0));padding:14px 0 10px;}
+  .tabbar{display:flex;gap:8px;overflow-x:auto;padding:0 16px 4px;scrollbar-width:none;}
+  .tabbar::-webkit-scrollbar{display:none;}
+  .tab{flex:none;font-family:'Public Sans',sans-serif;font-size:13.5px;font-weight:700;padding:10px 16px;border-radius:999px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.05);color:var(--text-light);white-space:nowrap;transition:all .18s ease;}
+  .tab.active{background:var(--gold);border-color:var(--gold);color:#3a2107;}
+
+  .panel{display:none;max-width:760px;margin:0 auto;padding:10px 16px 34px;animation:fade .3s ease;}
+  .panel.active{display:block;}
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:translateY(0);}}
+
+  .day-head{margin:6px 0 18px;}
+  .day-head .tag{display:inline-block;background:var(--wine);color:#fff;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;padding:4px 11px;border-radius:7px;margin-bottom:9px;}
+  .day-head h2{font-size:23px;margin:0 0 5px;color:#fff;}
+  .day-head p{margin:0 0 10px;color:var(--text-muted);font-size:14px;}
+
+  .banner{position:relative;border-radius:14px;overflow:hidden;height:110px;display:flex;align-items:flex-end;margin-bottom:14px;box-shadow:var(--shadow);}
+  .banner .bg-icon{position:absolute;right:-8px;top:-14px;font-size:88px;opacity:.28;transform:rotate(8deg);filter:drop-shadow(0 6px 10px rgba(0,0,0,.25));}
+  .banner .bcap{position:relative;z-index:1;padding:10px 14px;font-weight:800;font-size:14px;color:#fff;text-shadow:0 2px 8px rgba(0,0,0,.5);}
+  .banner .bcap small{display:block;font-weight:600;font-size:10.5px;opacity:.9;text-transform:uppercase;letter-spacing:.04em;}
+  .banner.b-mix{background:radial-gradient(120% 140% at 15% 0%, #f4c088 0%, #e8a15a 30%, #c4482e 65%, #0a2f3f 100%);}
+  .banner.b-sea{background:radial-gradient(120% 140% at 15% 0%, #6fc8c2 0%, #2f8f6e 35%, #12495e 70%, #0a2f3f 100%);}
+
+  .timeline{position:relative;padding-left:24px;}
+  .timeline:before{content:"";position:absolute;left:7px;top:6px;bottom:6px;width:2px;background:linear-gradient(var(--gold),var(--wine));opacity:.5;}
+  .item{position:relative;margin-bottom:16px;}
+  .item:before{content:"";position:absolute;left:-24px;top:6px;width:12px;height:12px;border-radius:50%;background:var(--gold-2);border:2px solid var(--night);}
+  .item.transport:before{background:#9dc9e8;}
+  .item.food:before{background:var(--wine-2);}
+  .item.tip:before{background:var(--pine);}
+
+  .card{background:var(--cream);color:var(--ink);border-radius:var(--radius);padding:15px 16px;box-shadow:var(--shadow);}
+  .card .row{display:flex;align-items:center;gap:9px;margin-bottom:5px;}
+  .card .time{font-family:'Fraunces',serif;font-weight:700;font-size:16px;color:var(--wine);white-space:nowrap;}
+  .card .title{font-weight:700;font-size:15.5px;flex:1;color:var(--ink);}
+  .card p{margin:5px 0 0;font-size:14px;line-height:1.58;color:var(--ink-soft);}
+
+  .block{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);border-radius:var(--radius);padding:18px 17px 16px;margin-bottom:16px;}
+  .block h3{font-size:17px;margin:0 0 4px;color:var(--gold-2);display:flex;align-items:center;gap:9px;}
+  .block > p.lead{font-size:13.5px;color:var(--text-muted);margin:0 0 14px;}
+  .subgroup{margin-bottom:14px;}
+  .subgroup h4{font-size:11.5px;text-transform:uppercase;letter-spacing:.07em;color:var(--gold-2);margin:0 0 8px;font-weight:800;}
+
+  .place-list{background:var(--cream);border-radius:12px;overflow:hidden;box-shadow:var(--shadow);}
+  .place{display:flex;align-items:flex-start;gap:11px;padding:12px 13px;border-bottom:1px solid #ece0c5;color:var(--ink);}
+  .place:last-child{border-bottom:none;}
+  .place .ptext{flex:1;min-width:0;}
+  .place .pn{font-weight:700;font-size:14.5px;color:var(--ink);}
+  .place .pd{font-size:13px;color:var(--ink-soft);margin-top:2px;line-height:1.5;}
+  .place .pmeta{display:flex;flex-direction:column;align-items:flex-end;gap:3px;flex:none;padding-top:1px;}
+  .place .pp{font-size:11.5px;color:var(--wine);white-space:nowrap;font-weight:700;}
+  .place .pr{font-size:11px;color:#3a7a5c;white-space:nowrap;font-weight:700;background:#e2f2e8;padding:2px 7px;border-radius:999px;}
+
+  .note{background:rgba(232,161,90,.14);border:1px solid rgba(232,161,90,.4);border-radius:11px;padding:11px 13px;font-size:13.3px;color:#ffe3bd;line-height:1.55;margin-top:10px;}
+  .note b{color:var(--gold-2);}
+
+  .map-frame{width:100%;height:280px;border:0;border-radius:12px;box-shadow:var(--shadow);}
+  .map-caption{font-size:12.5px;color:var(--text-muted);margin:8px 0 18px;text-align:center;}
+
+  .links-grid{display:grid;gap:8px;}
+  .link-row{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--cream);border-radius:11px;padding:12px 14px;color:var(--ink);box-shadow:var(--shadow);}
+  .link-row .ln{font-weight:700;font-size:14px;}
+  .link-row .ld{font-size:12px;color:var(--ink-soft);margin-top:1px;}
+  .link-row a.go{font-size:12.5px;font-weight:800;color:var(--wine);white-space:nowrap;}
+
+  .checklist{list-style:none;padding:0;margin:0;}
+  .checklist li{padding:9px 0 9px 26px;position:relative;font-size:14px;color:var(--text-light);border-bottom:1px solid rgba(255,255,255,.08);}
+  .checklist li:last-child{border-bottom:none;}
+  .checklist li:before{content:"✓";position:absolute;left:0;top:9px;color:var(--pine);background:#dff0e6;width:17px;height:17px;border-radius:5px;font-size:11.5px;line-height:17px;text-align:center;font-weight:800;}
+
+  footer{text-align:center;color:#8aa4ac;font-size:11.5px;padding:24px 16px 0;line-height:1.6;}
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="eyebrow">1 dia · Saída de manhã · Regresso à noite</div>
+  <h1>Margem Sul de Lisboa <em>até Setúbal</em></h1>
+  <p class="sub">Cacilhas → Cristo Rei → Costa da Caparica → Sesimbra → Serra da Arrábida → Setúbal — e de volta a Lisboa.</p>
+  <div class="badge">🚗 Roteiro pensado para automóvel próprio</div>
+</div>
+<div class="garland"></div>
+
+<div class="overview">
+  <div class="ov-card"><div class="n">~11h</div><div class="l">Duração</div></div>
+  <div class="ov-card"><div class="n">7</div><div class="l">Paragens</div></div>
+  <div class="ov-card"><div class="n">~140km</div><div class="l">Percurso total</div></div>
+  <div class="ov-card"><div class="n">🌊</div><div class="l">Praia + história</div></div>
+</div>
+
+<div class="tabbar-wrap">
+  <div class="tabbar" id="tabbar">
+    <div class="tab active" data-panel="roteiro">Roteiro do Dia</div>
+    <div class="tab" data-panel="ver">Ver</div>
+    <div class="tab" data-panel="comer">Comer</div>
+    <div class="tab" data-panel="mapas">Mapas</div>
+    <div class="tab" data-panel="pratico">Prático</div>
+  </div>
+</div>
+
+<!-- =================== ROTEIRO DO DIA =================== -->
+<div class="panel active" id="roteiro">
+  <div class="day-head">
+    <div class="banner b-mix"><span class="bg-icon">🌉</span><div class="bcap"><small>Um dia</small>Lisboa → Margem Sul → Setúbal → Lisboa</div></div>
+    <div class="tag">Roteiro</div>
+    <h2>Do Tejo à Arrábida, e de volta</h2>
+    <p>Saída de Lisboa por volta das 08h30, regresso previsto entre as 19h30 e as 20h00. Horários flexíveis — ajustem ao vosso ritmo.</p>
+  </div>
+
+  <div class="timeline">
+    <div class="item transport"><div class="card">
+      <div class="row"><span class="time">08:30</span><span class="title">Saída de Lisboa</span></div>
+      <p>Atravessar a Ponte 25 de Abril de carro, ou apanhar o ferry Cais do Sodré → Cacilhas (~10 min, ~1,25€) se preferirem começar a pé.</p>
+    </div></div>
+
+    <div class="item normal"><div class="card">
+      <div class="row"><span class="time">09:00</span><span class="title">Cacilhas — vista sobre Lisboa</span></div>
+      <p>Breve passeio pela marginal de Cacilhas, com uma das melhores vistas sobre o Terreiro do Paço e o Castelo de São Jorge. Paragem de ~20 min.</p>
+    </div></div>
+
+    <div class="item normal"><div class="card">
+      <div class="row"><span class="time">09:30</span><span class="title">Santuário do Cristo Rei</span></div>
+      <p>Subida ao elevador panorâmico (~82m) para uma vista de 360° sobre o Tejo e Lisboa. Duração da visita: ~45 min. Bilhete elevador ~6€.</p>
+    </div></div>
+
+    <div class="item normal"><div class="card">
+      <div class="row"><span class="time">10:45</span><span class="title">Costa da Caparica</span></div>
+      <p>Passeio pelo paredão à beira-mar, praia e ambiente boémio. Bom para esticar as pernas e apanhar sol cedo. Duração: ~1h.</p>
+    </div></div>
+
+    <div class="item transport"><div class="card">
+      <div class="row"><span class="time">12:00</span><span class="title">Sesimbra — vila piscatória & castelo</span></div>
+      <p>Chegada a Sesimbra (~35 min de carro desde a Costa da Caparica). Passeio pela marginal e subida ao Castelo de Sesimbra (séc. IX), com vista sobre o Atlântico. Duração: ~1h.</p>
+    </div></div>
+
+    <div class="item food"><div class="card">
+      <div class="row"><span class="time">13:15</span><span class="title">Almoço em Sesimbra</span></div>
+      <p>Peixe fresco grelhado é a especialidade da vila — ver sugestões na secção "Comer". Reserva recomendada em época alta. Duração: ~1h30.</p>
+    </div></div>
+
+    <div class="item normal"><div class="card">
+      <div class="row"><span class="time">15:00</span><span class="title">Parque Natural da Arrábida</span></div>
+      <p>Estrada panorâmica N379-1 entre serra e mar — miradouros sobre baías de água cristalina, o Convento da Arrábida ao longe. Duração: ~45 min.</p>
+    </div></div>
+
+    <div class="item normal"><div class="card">
+      <div class="row"><span class="time">15:45</span><span class="title">Portinho da Arrábida</span></div>
+      <p>Uma das praias mais bonitas de Portugal — água turquesa aos pés da serra. Paragem para fotos e/ou banho rápido. Duração: ~45 min.</p>
+    </div></div>
+
+    <div class="item transport"><div class="card">
+      <div class="row"><span class="time">16:45</span><span class="title">Setúbal — centro histórico</span></div>
+      <p>Igreja de Jesus (primeiro edifício manuelino de Portugal), Mercado do Livramento e o Castelo de São Filipe ao longe. Duração: ~1h15.</p>
+    </div></div>
+
+    <div class="item tip"><div class="card">
+      <div class="row"><span class="time">18:00</span><span class="title">Prova de Moscatel de Setúbal (opcional)</span></div>
+      <p>José Maria da Fonseca (Azeitão) fica a caminho do regresso — provas de vinho generoso e queijo de Azeitão. Duração: ~45 min.</p>
+    </div></div>
+
+    <div class="item transport"><div class="card">
+      <div class="row"><span class="time">18:45</span><span class="title">Regresso a Lisboa</span></div>
+      <p>Via A2 + Ponte Vasco da Gama ou A2 + Ponte 25 de Abril, consoante o trânsito. Chegada prevista entre as 19h30 e as 20h00.</p>
+    </div></div>
+  </div>
+
+  <div class="note">🚗 <b>Percurso pensado para automóvel</b> — sem carro, é possível fazer Lisboa–Cacilhas de ferry e depois autocarros TST até Sesimbra e Setúbal, mas o dia fica mais apertado e algumas paragens (Arrábida, Portinho) tornam-se difíceis de encaixar. Ver alternativas na secção "Prático".</div>
+</div>
+
+<!-- =================== VER =================== -->
+<div class="panel" id="ver">
+  <div class="day-head">
+    <div class="banner b-sea small"><span class="bg-icon">🏰</span><div class="bcap"><small>Atrações</small>Pontos de interesse na rota</div></div>
+    <div class="tag">Atrações</div>
+    <h2>O que ver pelo caminho</h2>
+    <p>Organizado pela ordem do roteiro — de Cacilhas a Setúbal</p>
+  </div>
+
+  <div class="block">
+    <h3>🌉 Almada & Cristo Rei</h3>
+    <div class="place-list" id="list-almada"></div>
+  </div>
+
+  <div class="block">
+    <h3>🏖️ Costa da Caparica</h3>
+    <div class="place-list" id="list-caparica"></div>
+  </div>
+
+  <div class="block">
+    <h3>⛵ Sesimbra</h3>
+    <div class="place-list" id="list-sesimbra"></div>
+  </div>
+
+  <div class="block">
+    <h3>🌲 Serra da Arrábida</h3>
+    <div class="place-list" id="list-arrabida"></div>
+  </div>
+
+  <div class="block">
+    <h3>🏛️ Setúbal & Azeitão</h3>
+    <div class="place-list" id="list-setubal"></div>
+  </div>
+</div>
+
+<!-- =================== COMER =================== -->
+<div class="panel" id="comer">
+  <div class="day-head">
+    <div class="banner b-mix small"><span class="bg-icon">🐟</span><div class="bcap"><small>Gastronomia</small>Peixe, marisco e petiscos</div></div>
+    <div class="tag">Gastronomia</div>
+    <h2>Onde comer, por tipo de cozinha</h2>
+    <p>Preços médios por pessoa e reputação — confirmem sempre avaliações atualizadas antes de reservar</p>
+  </div>
+
+  <div class="block">
+    <h3>🐟 Peixe & Marisco</h3>
+    <div class="place-list" id="list-peixe"></div>
+  </div>
+
+  <div class="block">
+    <h3>🍲 Tradicional Português</h3>
+    <div class="place-list" id="list-tradicional"></div>
+  </div>
+
+  <div class="block">
+    <h3>🍢 Petiscos & Casual</h3>
+    <div class="place-list" id="list-petiscos"></div>
+  </div>
+
+  <div class="block">
+    <h3>🏖️ Praia & Esplanada</h3>
+    <div class="place-list" id="list-praia"></div>
+  </div>
+
+  <div class="block">
+    <h3>🍷 Vinho, queijo & doces</h3>
+    <div class="place-list" id="list-doces"></div>
+  </div>
+
+  <div class="note">💡 <b>Preços médios</b> referem-se a uma refeição completa por pessoa (prato principal + bebida). Os pratos de peixe "ao quilo" (robalo, pregado, garoupa) podem custar bem mais — perguntem sempre o preço antes de encomendar.</div>
+</div>
+
+<!-- =================== MAPAS =================== -->
+<div class="panel" id="mapas">
+  <div class="day-head">
+    <div class="banner b-mix small"><span class="bg-icon">🗺️</span><div class="bcap"><small>Orientação</small>O percurso no mapa</div></div>
+    <div class="tag">Orientação</div>
+    <h2>Mapas do percurso</h2>
+  </div>
+
+  <div class="block">
+    <h3>🌉 Cristo Rei & Cacilhas</h3>
+    <iframe class="map-frame" loading="lazy" src="https://maps.google.com/maps?q=Santuario+Nacional+de+Cristo+Rei+Almada&z=14&output=embed"></iframe>
+    <p class="map-caption">~10 min de carro desde Lisboa via Ponte 25 de Abril.</p>
+  </div>
+
+  <div class="block">
+    <h3>🏖️ Costa da Caparica</h3>
+    <iframe class="map-frame" loading="lazy" src="https://maps.google.com/maps?q=Costa+da+Caparica&z=13&output=embed"></iframe>
+    <p class="map-caption">~15 min de Almada.</p>
+  </div>
+
+  <div class="block">
+    <h3>⛵ Sesimbra</h3>
+    <iframe class="map-frame" loading="lazy" src="https://maps.google.com/maps?q=Sesimbra+Portugal&z=13&output=embed"></iframe>
+    <p class="map-caption">~35 min da Costa da Caparica.</p>
+  </div>
+
+  <div class="block">
+    <h3>🌲 Serra da Arrábida & Portinho</h3>
+    <iframe class="map-frame" loading="lazy" src="https://maps.google.com/maps?q=Portinho+da+Arrabida&z=13&output=embed"></iframe>
+    <p class="map-caption">~20 min de Sesimbra pela estrada N379-1.</p>
+  </div>
+
+  <div class="block">
+    <h3>🏛️ Setúbal</h3>
+    <iframe class="map-frame" loading="lazy" src="https://maps.google.com/maps?q=Setubal+centro+historico&z=13&output=embed"></iframe>
+    <p class="map-caption">~20 min de Portinho da Arrábida.</p>
+  </div>
+</div>
+
+<!-- =================== PRÁTICO =================== -->
+<div class="panel" id="pratico">
+  <div class="day-head">
+    <div class="banner b-mix small"><span class="bg-icon">🧭</span><div class="bcap"><small>Referência</small>Transporte e dicas</div></div>
+    <div class="tag">Referência</div>
+    <h2>Guia prático</h2>
+  </div>
+
+  <div class="block">
+    <h3>🚗 De carro (recomendado)</h3>
+    <ul class="checklist">
+      <li>Saída por Ponte 25 de Abril, regresso por Ponte Vasco da Gama (ou vice-versa) para evitar repetir a paisagem</li>
+      <li>Portagens: ~€2,90 (25 de Abril, sentido Norte→Sul é grátis; pagam ao entrar em Lisboa) e via verde/matrícula na A2/Vasco da Gama consoante o percurso</li>
+      <li>Estacionamento gratuito ou de baixo custo disponível em Sesimbra, Portinho da Arrábida (limitado em época alta) e Setúbal</li>
+      <li>Estrada N379-1 na Arrábida é estreita e sinuosa — conduzam com atenção, sobretudo em fins de semana de verão</li>
+    </ul>
+  </div>
+
+  <div class="block">
+    <h3>🚌⛴️ Sem carro (alternativa)</h3>
+    <ul class="checklist">
+      <li>Ferry Cais do Sodré → Cacilhas (Transtejo, ~10 min, ~1,25€, frequente)</li>
+      <li>Autocarros TST desde Cacilhas ou terminal do Pragal até Sesimbra e Setúbal</li>
+      <li>Comboio Fertagus (Roma-Areeiro/Sete Rios) até Setúbal, ~50 min</li>
+      <li>Arrábida e Portinho são difíceis de alcançar em transporte público — considerem um táxi/Uber local ou tour organizado se não tiverem carro</li>
+    </ul>
+    <div class="note">💡 Sem carro, o roteiro mais realista para 1 dia é <b>Cacilhas → Cristo Rei → Setúbal</b> (comboio) ou um <b>tour organizado</b> que já inclui transporte para Sesimbra e Arrábida.</div>
+  </div>
+
+  <div class="block">
+    <h3>🎟️ Bilhetes & horários</h3>
+    <div class="links-grid">
+      <div class="link-row"><div><div class="ln">Elevador do Cristo Rei</div><div class="ld">Bilhetes e horários oficiais</div></div><a class="go" href="https://www.cristorei.pt" target="_blank" rel="noopener">Abrir ↗</a></div>
+      <div class="link-row"><div><div class="ln">Transtejo (ferries)</div><div class="ld">Cais do Sodré ↔ Cacilhas / Belém ↔ Trafaria</div></div><a class="go" href="https://www.ttsl.pt" target="_blank" rel="noopener">Abrir ↗</a></div>
+      <div class="link-row"><div><div class="ln">TST (autocarros)</div><div class="ld">Ligações a Sesimbra, Setúbal e Arrábida</div></div><a class="go" href="https://www.tsuldotejo.pt" target="_blank" rel="noopener">Abrir ↗</a></div>
+    </div>
+  </div>
+
+  <div class="block">
+    <h3>🧳 Dicas rápidas</h3>
+    <ul class="checklist">
+      <li>Levar fato de banho — Portinho da Arrábida e as praias de Sesimbra convidam a um mergulho</li>
+      <li>Reservar almoço em Sesimbra com antecedência aos fins de semana e no verão</li>
+      <li>Chegar cedo ao Portinho da Arrábida em época alta — o estacionamento enche rapidamente</li>
+      <li>Levar dinheiro/trocos para portagens sem via verde e para as provas de vinho em Azeitão</li>
+      <li>Calçado confortável para a subida ao Castelo de Sesimbra e ao centro histórico de Setúbal</li>
+    </ul>
+  </div>
+</div>
+
+<footer>Roteiro de 1 dia · Margem Sul de Lisboa até Setúbal · horários e preços a confirmar mais perto da data</footer>
+
+<script>
+const PLACES = {
+  'list-almada': [
+    {n:'Santuário do Cristo Rei', d:'Vista panorâmica sobre Lisboa e o Tejo, elevador até ~82m de altura'},
+    {n:'Cais de Cacilhas', d:'Marginal com vista sobre o Terreiro do Paço e o Castelo de São Jorge'},
+    {n:'Elevador Panorâmico de Almada', d:'Liga a zona ribeirinha ao centro histórico de Almada Velha, vista sobre o rio'},
+    {n:'Parque da Paz', d:'50 hectares de jardins e lago, bom para uma pausa tranquila'},
+  ],
+  'list-caparica': [
+    {n:'Paredão da Costa da Caparica', d:'Passeio marítimo com quilómetros de praias douradas'},
+    {n:'Praia do Castelo', d:'Uma das praias mais procuradas, com bom ambiente de esplanadas'},
+    {n:'Mercado de peixe da Costa da Caparica', d:'Pescado fresco vendido pelas peixeiras junto à areia (arte xávega)'},
+  ],
+  'list-sesimbra': [
+    {n:'Castelo de Sesimbra', d:'Fortaleza do séc. IX com vista panorâmica sobre o Atlântico'},
+    {n:'Porto de Abrigo & marginal', d:'Passeio à beira-mar junto ao porto de pesca'},
+    {n:'Praia do Ribeiro do Cavalo', d:'Uma das praias mais bonitas da região, acesso a pé ou de barco (~30 min a pé)'},
+    {n:'Fortaleza de Santiago', d:'Antiga fortificação junto à praia principal'},
+  ],
+  'list-arrabida': [
+    {n:'Estrada panorâmica N379-1', d:'Miradouros entre a serra e o mar, uma das mais bonitas de Portugal'},
+    {n:'Portinho da Arrábida', d:'Praia icónica de água turquesa aos pés da serra'},
+    {n:'Convento da Arrábida', d:'Antigo convento franciscano, visível dos miradouros da estrada'},
+    {n:'Cabo Espichel', d:'Falésias dramáticas e santuário isolado — pequeno desvio, boa opção se sobrar tempo'},
+  ],
+  'list-setubal': [
+    {n:'Igreja de Jesus', d:'Primeiro edifício manuelino de Portugal, colunas em corda de pedra'},
+    {n:'Mercado do Livramento', d:'Um dos mercados mais bonitos do país — azulejos e bancas de peixe/fruta'},
+    {n:'Castelo de São Filipe', d:'Vista panorâmica sobre a cidade e o estuário do Sado'},
+    {n:'Adega José Maria da Fonseca (Azeitão)', d:'Provas de Moscatel de Setúbal, a caminho do regresso a Lisboa'},
+  ],
+};
+
+const FOOD_PEIXE = [
+ {n:'A Tasca do Isaías', d:'Sesimbra — sem menu fixo, peixe do dia no quadro à entrada, considerado dos melhores de peixe/marisco do país', p:'~20–30€', r:'Muito recomendado'},
+ {n:'Lobo do Mar', d:'Sesimbra — peixe grelhado no carvão junto ao Porto de Abrigo', p:'~20–35€', r:'Muito recomendado'},
+ {n:'O Tavira', d:'Setúbal — mariscadas à la carte e arroz de tamboril, aquário de marisco vivo', p:'~25–35€', r:'Muito recomendado'},
+ {n:'Bombordo', d:'Setúbal — peixe na brasa por um conhecedor da casa, escolha clássica', p:'~20–30€', r:'Muito recomendado'},
+ {n:'Casa Santiago', d:'Setúbal — a casa que popularizou o choco frito na cidade, sempre com fila à porta', p:'~13€ (meia dose choco)', r:'Ícone local'},
+ {n:'Baluarte da Avenida', d:'Setúbal — peixe e marisco sem grandes floreados, entrada com queijo de Azeitão', p:'~20–28€', r:'Muito recomendado'},
+ {n:'Farol', d:'Cacilhas — cervejaria centenária junto ao cais, mistos de marisco e peixe na brasa, vista sobre o Tejo', p:'~20–30€', r:'Clássico local'},
+ {n:'Cabrinha', d:'Cacilhas — uma das maiores marisqueiras do distrito de Setúbal, lagosta e lavagante', p:'~30–45€', r:'Muito recomendado'},
+ {n:'Atira-te ao Rio', d:'Cacilhas (Cais do Ginjal) — marisco e carne com a melhor vista sobre Lisboa', p:'~25–35€', r:'Muito recomendado'},
+ {n:'Ponto Final', d:'Cacilhas (Cais do Ginjal) — mesas literalmente dentro de água na maré-cheia, peixe e petiscos', p:'~20–30€', r:'Muito recomendado'},
+];
+const FOOD_TRADICIONAL = [
+ {n:'Casa Mateus', d:'Sesimbra — receitas de família reinterpretadas, croquetes de rabo de boi, mero braseado', p:'~20–28€', r:'Muito recomendado'},
+ {n:'O Beirão', d:'Costa da Caparica (Vale Fetal) — cozido à portuguesa e vitela assada à moda de Lafões', p:'~15–22€', r:'Bem avaliado'},
+ {n:'Batareo', d:'Setúbal — cozinha de autor com base tradicional, caldeirada de raia/tamboril/robalo', p:'~18–25€', r:'Muito recomendado'},
+ {n:'Adega dos Garrafões', d:'Setúbal — taberna tradicional, cozinha caseira e boas escolhas de vinho', p:'~15–20€', r:'Bem avaliado'},
+];
+const FOOD_PETISCOS = [
+ {n:'O Rodinhas', d:'Sesimbra — especialista em choco frito, caracóis e marisco fresco desde 1992', p:'~12–20€', r:'Clássico local'},
+ {n:'Restaurante Isoleta', d:'Costa da Caparica — "tasco secreto", peixe e marisco fresquíssimos a preço imbatível', p:'~10€', r:'★ 4,3/5 Google (716 avaliações)'},
+ {n:'Boteco 47', d:'Cacilhas — camarão frito, prego de novilho e sardinhas, petiscos para picar', p:'~10–18€', r:'Bem avaliado'},
+ {n:'490 Taberna STB', d:'Setúbal — taberna moderna com petiscos e choco frito na carta', p:'~12–18€', r:'Bem avaliado'},
+ {n:'Léo do Petisco', d:'Setúbal — petiscaria informal, boa opção para partilhar vários pratos', p:'~10–16€', r:'Bem avaliado'},
+ {n:'Cais 56', d:'Setúbal — junto ao porto, petiscos de peixe e marisco a preços simpáticos', p:'~12–18€', r:'Bem avaliado'},
+];
+const FOOD_PRAIA = [
+ {n:'O Barbas', d:'Costa da Caparica — clássico no paredão desde há décadas, caldeirada é a especialidade', p:'~18–25€', r:'Muito recomendado'},
+ {n:'Casablanca Beach Lounge', d:'Costa da Caparica — pratos internacionais e portugueses em cima da areia', p:'~15–25€', r:'Bem avaliado'},
+ {n:'Praia Princesa', d:'Costa da Caparica — ambiente animado ao fim da tarde, peixe grelhado no carvão e pratos contemporâneos', p:'~18–28€', r:'Bem avaliado'},
+ {n:'Irmão', d:'Praia do Castelo, Costa da Caparica — clube de praia informal, pizzas de fermentação lenta', p:'~12–20€', r:'Bem avaliado'},
+ {n:'Aqui Peixe', d:'Praia da Fonte da Telha — esplanada grande, petiscos e assados no carvão', p:'~15–22€', r:'Bem avaliado'},
+];
+const FOOD_DOCES = [
+ {n:'José Maria da Fonseca', d:'Azeitão — a mais antiga adega de vinhos de mesa em Portugal, provas de Moscatel de Setúbal', p:'~10–20€ (prova)', r:'Muito recomendado'},
+ {n:'Queijaria em Azeitão', d:'Queijo de Azeitão DOP, produção artesanal de ovelha — várias lojas no centro da vila', p:'~5–10€', r:'Produto local premiado'},
+ {n:'Pastelaria em Setúbal', d:'Doces conventuais e café, boa paragem antes do regresso', p:'~5–8€', r:'Bem avaliado'},
+];
+
+function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+function renderPlaces(){
+  Object.keys(PLACES).forEach(id => {
+    const el = document.getElementById(id);
+    if(!el) return;
+    el.innerHTML = PLACES[id].map(it => `
+      <div class="place">
+        <div class="ptext"><div class="pn">${esc(it.n)}</div><div class="pd">${esc(it.d)}</div></div>
+      </div>`).join('');
+  });
+}
+
+function renderFood(containerId, items){
+  const el = document.getElementById(containerId);
+  if(!el) return;
+  el.innerHTML = items.map(it => `
+    <div class="place">
+      <div class="ptext"><div class="pn">${esc(it.n)}</div><div class="pd">${esc(it.d)}</div></div>
+      <div class="pmeta"><span class="pp">${esc(it.p)}</span><span class="pr">${esc(it.r)}</span></div>
+    </div>`).join('');
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  renderPlaces();
+  renderFood('list-peixe', FOOD_PEIXE);
+  renderFood('list-tradicional', FOOD_TRADICIONAL);
+  renderFood('list-petiscos', FOOD_PETISCOS);
+  renderFood('list-praia', FOOD_PRAIA);
+  renderFood('list-doces', FOOD_DOCES);
+
+  document.querySelectorAll('#tabbar > .tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('#tabbar > .tab').forEach(t => t.classList.toggle('active', t===tab));
+      document.querySelectorAll('.panel').forEach(p => p.classList.toggle('active', p.id===tab.dataset.panel));
+      window.scrollTo({top:0, behavior:'smooth'});
+    });
+  });
+});
+</script>
+
+</body>
+</html>
