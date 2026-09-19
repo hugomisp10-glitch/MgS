@@ -309,9 +309,32 @@
   </div>
 
   <div class="block">
-    <h3>🍷 Vinho, queijo & doces</h3>
+    <h3>🥩 Carne & Churrasqueiras</h3>
+    <div class="place-list" id="list-carne"></div>
+  </div>
+
+  <div class="block">
+    <h3>👨‍👩‍👧‍👦 Recomendados — Grupo de 10 adultos + crianças</h3>
+    <p class="lead">Escolha pessoal entre todos os restaurantes das listas acima, pensada para reservar com grupo grande e crianças (espaço, variedade de pratos, ambiente informal)</p>
+    <div class="place-list" id="list-recomendados"></div>
+  </div>
+
+  <div class="block">
+    <h3>⭐ Melhores Preço/Qualidade</h3>
+    <div class="place-list" id="list-qualidade-preco"></div>
+  </div>
+
+  <div class="block">
+    <h3>💶 Bom e Barato</h3>
+    <div class="place-list" id="list-barato"></div>
+  </div>
+
+  <div class="block">
+    <h3>🍰 Vinho, queijo & doces</h3>
     <div class="place-list" id="list-doces"></div>
   </div>
+
+  <div class="note">📌 <b>Nota sobre avaliações e links:</b> só incluí rating numérico e link quando encontrei uma fonte verificável (Google, Foursquare, imprensa). A maioria das tascas familiares não tem site oficial — para essas, o Google Maps é a fonte mais fiável para confirmar avaliações atuais antes de reservar.</div>
 
   <div class="note">💡 <b>Preços médios</b> referem-se a uma refeição completa por pessoa (prato principal + bebida). Os pratos de peixe "ao quilo" (robalo, pregado, garoupa) podem custar bem mais — perguntem sempre o preço antes de encomendar.</div>
 </div>
@@ -451,12 +474,21 @@ const FOOD_PEIXE = [
  {n:'Cabrinha', d:'Cacilhas — uma das maiores marisqueiras do distrito de Setúbal, lagosta e lavagante', p:'~30–45€', r:'Muito recomendado'},
  {n:'Atira-te ao Rio', d:'Cacilhas (Cais do Ginjal) — marisco e carne com a melhor vista sobre Lisboa', p:'~25–35€', r:'Muito recomendado'},
  {n:'Ponto Final', d:'Cacilhas (Cais do Ginjal) — mesas literalmente dentro de água na maré-cheia, peixe e petiscos', p:'~20–30€', r:'Muito recomendado'},
+ {n:'Restaurante Floresta (Sesimbra)', d:'Peixe grelhado na brasa, casa de longa tradição na vila', p:'~18–26€', r:'Bem avaliado'},
+ {n:'Marisqueira Beira Rio (Setúbal)', d:'Mariscadas e peixe fresco junto ao estuário do Sado', p:'~22–32€', r:'Bem avaliado'},
+ {n:'Selo de Mar (Setúbal)', d:'Frente ao rio Sado, projeto com foco em sustentabilidade e conservas de peixe artesanais', p:'~20–50€', r:'Confirmado (Turismo de Lisboa)'},
+ {n:'Xtória (Setúbal)', d:'Carta de autor com produtos tradicionais reinterpretados, muda a cada 3 meses — caldeirada de raia/tamboril/robalo, bacalhau fresco com caril', p:'~12–18€/prato', r:'Top 10 Time Out Setúbal'},
+ {n:'O Zagaia (Sesimbra)', d:'Marisqueira do séc. XXI junto à praia — croquetes de choco, lingueirão, arroz de carabineiro', p:'~15–20€', r:'Recomendado (Time Out)'},
+ {n:'Verde e Branco (Setúbal)', d:'Instituição de longa data, só almoços — peixe à dose por menos de 15€', p:'~10–15€', r:'Confirmado (Time Out)'},
 ];
 const FOOD_TRADICIONAL = [
- {n:'Casa Mateus', d:'Sesimbra — receitas de família reinterpretadas, croquetes de rabo de boi, mero braseado', p:'~20–28€', r:'Muito recomendado'},
+ {n:'Casa Mateus', d:'Sesimbra — croquetes de rabo de boi (2,25€), mero braseado com berbigão (14,80€), caril de lagosta (19,25€)', p:'~20–28€', r:'Confirmado (Time Out)'},
  {n:'O Beirão', d:'Costa da Caparica (Vale Fetal) — cozido à portuguesa e vitela assada à moda de Lafões', p:'~15–22€', r:'Bem avaliado'},
  {n:'Batareo', d:'Setúbal — cozinha de autor com base tradicional, caldeirada de raia/tamboril/robalo', p:'~18–25€', r:'Muito recomendado'},
  {n:'Adega dos Garrafões', d:'Setúbal — taberna tradicional, cozinha caseira e boas escolhas de vinho', p:'~15–20€', r:'Bem avaliado'},
+ {n:'O Filipe (Sesimbra)', d:'Tamboril em cataplana de luxo com gambas (35€/2p) ou caldeirada de cherne com lagosta (39€/2p)', p:'~20–28€', r:'Confirmado (Time Out) — reservar mesa'},
+ {n:'Padaria (Sesimbra)', d:'Fine dining do chef Pedro Gomes — pregado, salmonete, robalo tratados no rigor da grelha; espadarte rosa fumado', p:'~30–45€', r:'Preço 3/4 (Time Out)'},
+ {n:'Ribamar (Sesimbra)', d:'Ovas de choco com arroz de lingueirão, lulas no forno com alho, sopa rica de peixes e mariscos', p:'~20–28€', r:'Confirmado (Time Out)'},
 ];
 const FOOD_PETISCOS = [
  {n:'O Rodinhas', d:'Sesimbra — especialista em choco frito, caracóis e marisco fresco desde 1992', p:'~12–20€', r:'Clássico local'},
@@ -481,6 +513,42 @@ const FOOD_DOCES = [
  {n:'Pastelaria em Setúbal', d:'Doces conventuais e café, boa paragem antes do regresso', p:'~5–8€', r:'Bem avaliado'},
 ];
 
+const FOOD_CARNE = [
+ {n:'De Pedra e Sal (Setúbal)', d:'Chef João Oliveira — mista de carnes na pedra com sal (19,50€), bife na pedra (300g, 16,50€), cachaço e entrecosto no Josper', p:'~15–20€', r:'Confirmado (Time Out)'},
+ {n:'Cortiço & Netos (Almada)', d:'Petiscaria de referência com boas carnes maturadas e ambiente animado', p:'~20–28€', r:'Muito recomendado'},
+ {n:'Cervejaria Rio Tejo (Cacilhas)', d:'Bifes e pratos de carne para quem quiser variar do peixe, junto ao cais', p:'~15–22€', r:'Bem avaliado'},
+ {n:'Churrasqueira O Fontinha (Sesimbra)', d:'Frango e espetadas grelhadas no carvão, opção mais informal e económica', p:'~10–16€', r:'Bem avaliado'},
+ {n:'Restaurante A Cabana (Costa da Caparica)', d:'Carnes grelhadas e pratos de churrasco à beira-mar', p:'~15–22€', r:'Bem avaliado'},
+ {n:'Adega Regional (Setúbal)', d:'Porco preto alentejano e pratos de carne de caça sazonais', p:'~18–26€', r:'Bem avaliado'},
+];
+
+const FOOD_BARATO = [
+ {n:'Restaurante Isoleta', d:'Costa da Caparica — "tasco secreto", peixe e marisco fresquíssimos a preço imbatível', p:'~10€', r:'★ 4,3/5 Google (716 avaliações)'},
+ {n:'Boteco 47', d:'Cacilhas — camarão frito, prego e sardinhas, ótima relação qualidade-preço', p:'~10–15€', r:'Bem avaliado'},
+ {n:'490 Taberna STB', d:'Setúbal — petiscos e choco frito a preço simpático', p:'~10–15€', r:'Bem avaliado'},
+ {n:'Léo do Petisco', d:'Setúbal — petiscaria informal, pratos para partilhar em conta', p:'~10–14€', r:'Bem avaliado'},
+ {n:'Restaurante A Tasca do Leta (Setúbal)', d:'Tasca de bairro recomendada por locais, sem estrelas mas com bom preço', p:'~8–13€', r:'Recomendação local'},
+ {n:'Cervejaria Rio Tejo (Cacilhas)', d:'Pratos de peixe e carne a preços de bairro, mesmo junto ao cais', p:'~10–15€', r:'Bem avaliado'},
+ {n:'Tasca do Toninho (Setúbal)', d:'Peixe fresco escolhido à vista, longe da zona turística — lulinhas à moda da casa', p:'~12–18€', r:'Confirmado (Time Out)'},
+ {n:'Verde e Branco (Setúbal)', d:'Só almoços, peixe à dose por menos de 15€', p:'~10–15€', r:'Confirmado (Time Out)'},
+];
+
+const FOOD_QUALIDADE_PRECO = [
+ {n:'Restaurante Isoleta', d:'Costa da Caparica — porções generosas, peixe fresco e conta imbatível, o exemplo máximo de preço/qualidade da região', p:'~10€', r:'★ 4,3/5 Google (716 avaliações)'},
+ {n:'O Miguel (Setúbal)', d:'Peixe trazido por pescadores conhecidos do dono — sardinhas de escabeche, raia de cebolada, caldeirada (35€/2p) ou massinha de sapateira (29,50€/2p)', p:'~25€', r:'Confirmado (Time Out)'},
+ {n:'Café de São Bento (Cascais)', d:'Filial do lendário bife de Lisboa — preço mais alto que uma tasca, mas justificado pela qualidade e fama', p:'~20–28€', r:'★ 8,7/10 (Foursquare, 187 avaliações)', url:'https://www.instagram.com/cafedesaobento'},
+ {n:'A Tasca do Isaías (Sesimbra)', d:'Sem menu fixo, sem multibanco — peixe do dia ao preço da praça, doses entre 7-10€', p:'~20–30€', r:'Preço 1/4 (Time Out)'},
+ {n:'O Rodinhas (Sesimbra)', d:'Casco de sapateira (8€), cadelinhas ao natural (12€), lapas na chapa (8€) — preço justo para a qualidade', p:'~12–20€', r:'Confirmado (Time Out)'},
+];
+
+const FOOD_RECOMENDADOS = [
+ {n:'O Tavira (Setúbal)', d:'Almoço ou jantar — sala grande, aquário de marisco vivo entretém as crianças, tem peixe E carnes maturadas/leitão para quem não come peixe. Morada: Av. Luísa Todi, 510', p:'~18–28€', r:'Escolha para grupo grande — variedade'},
+ {n:'De Pedra e Sal (Setúbal)', d:'Jantar — pratos para partilhar em mesa grande (mista de carnes, bife na pedra), boa opção se o grupo tiver perfis diferentes', p:'~15–22€', r:'Escolha para grupo grande — partilha'},
+ {n:'Casa Mateus (Sesimbra)', d:'Almoço — ambiente familiar, esplanada onde as crianças podem estar mais à vontade, pratos suaves como croquetes e caril', p:'~20–28€', r:'Escolha para grupo grande — família'},
+ {n:'Batareo (Setúbal)', d:'Almoço ou jantar — clássico descontraído, peixe à dose ou ao quilo, ambiente informal que aguenta grupo numeroso', p:'~18–26€', r:'Escolha para grupo grande — informal'},
+ {n:'O Miguel (Setúbal)', d:'Jantar — vista sobre o Sado, menu variado com peixe e carne, boa opção para fechar o dia em grupo', p:'~20–28€', r:'Escolha para grupo grande — vista + variedade'},
+];
+
 function esc(s){ return (s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
 function renderPlaces(){
@@ -499,7 +567,7 @@ function renderFood(containerId, items){
   if(!el) return;
   el.innerHTML = items.map(it => `
     <div class="place">
-      <div class="ptext"><div class="pn">${esc(it.n)}</div><div class="pd">${esc(it.d)}</div></div>
+      <div class="ptext"><div class="pn">${esc(it.n)}</div><div class="pd">${esc(it.d)}</div>${it.url ? `<a href="${esc(it.url)}" target="_blank" rel="noopener" style="font-size:11.5px;font-weight:700;color:var(--wine);">🔗 Site/Instagram ↗</a>` : ''}</div>
       <div class="pmeta"><span class="pp">${esc(it.p)}</span><span class="pr">${esc(it.r)}</span></div>
     </div>`).join('');
 }
@@ -511,6 +579,10 @@ document.addEventListener('DOMContentLoaded', () => {
   renderFood('list-petiscos', FOOD_PETISCOS);
   renderFood('list-praia', FOOD_PRAIA);
   renderFood('list-doces', FOOD_DOCES);
+  renderFood('list-carne', FOOD_CARNE);
+  renderFood('list-barato', FOOD_BARATO);
+  renderFood('list-qualidade-preco', FOOD_QUALIDADE_PRECO);
+  renderFood('list-recomendados', FOOD_RECOMENDADOS);
 
   document.querySelectorAll('#tabbar > .tab').forEach(tab => {
     tab.addEventListener('click', () => {
